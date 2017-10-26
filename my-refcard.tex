@@ -1,0 +1,493 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[margin=1cm,landscape]{geometry}
+\pagestyle{empty}
+
+\usepackage{textcomp}
+\usepackage{multicol}
+\usepackage{menukeys}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{xpatch}
+\usepackage{xparse}
+\usepackage{calc}
+\usepackage{tcolorbox}
+
+\colorlet{faded}{lightgray}
+\colorlet{namespace}{black}
+
+\def\alternateitem\item[#1]{\item[#1]\color{faded}}
+
+\NewDocumentCommand\ns{g}{\IfValueTF{#1}{\gdef\currentnamespace{#1}\currentnamespace}{\textcolor{namespace}{\currentnamespace}}}
+
+\renewcommand\section[1]{\bigskip\par\textbf{\large#1}\medskip}
+\renewcommand\subsection[1]{\medskip\par\textbf{#1}\medskip}
+
+% This changes the theme of the default type of the keys
+\changemenucolortheme{roundedkeys}{blacknwhite}
+
+\newcommand\meta[1]{\textlangle\textit{#1}\textrangle}
+\newcommand\keyify[1]{\keys{\ttfamily#1}}
+
+
+\newlist{keylist}{description}{1}
+\setlist[keylist]{
+  labelindent = 0ex,
+  itemsep     = -1ex,
+  font        = \keyify,
+  before      = \let\&\alternateitem
+                \xpretocmd{\item}{\color{black}}{}{}
+                \ttfamily
+}
+
+\setlength\parindent{0em}
+\setlength\parsep{0ex}
+\renewcommand\baselinestretch{1.2}
+
+\begin{document}
+
+\setlength{\columnsep}{0.3cm}
+
+\begin{multicols*}{3}
+
+
+\section{ace}
+\begin{keylist}[labelwidth=\widthof{\keyify{-}}]
+	\item[-] special-lispy-ace-subword
+	\item[a] special-lispy-ace-symbol
+	\item[H] special-lispy-ace-symbol-replace
+	\item[Q] special-lispy-ace-char
+	\item[q] special-lispy-ace-paren
+\end{keylist}
+
+
+\section{special}
+\begin{keylist}[labelwidth=\widthof{\keyify{+}}]
+	\item[\texttt{+}] special-lispy-join
+	\item[.] special-lispy-repeat
+	\item[/] special-lispy-splice
+	\item[<] special-lispy-barf
+	\item[>] special-lispy-slurp
+	\item[\_] special-lispy-underscore
+	\item[A] special-lispy-beginning-of-defun
+	\item[B] special-lispy-ediff-regions
+	\item[b] special-lispy-back
+	\item[C] special-lispy-convolute
+	\item[c] special-lispy-clone
+	\item[d] special-lispy-different
+	\item[E] special-lispy-eval-and-insert
+	\item[e] special-lispy-eval
+	\item[F] special-lispy-follow
+	\item[f] special-lispy-flow
+	\item[G] special-lispy-goto-local
+	\item[g] special-lispy-goto
+	\item[h] special-lispy-left
+	\item[I] special-lispy-shifttab
+	\item[i] special-lispy-tab
+	\item[J] special-lispy-outline-next
+	\item[j] special-lispy-down
+	\item[K] special-lispy-outline-prev
+	\item[k] special-lispy-up
+	\item[L] special-lispy-outline-goto-child
+	\item[l] special-lispy-right
+	\item[M] special-lispy-alt-multiline
+	\item[m] special-lispy-mark-list
+	\item[N] special-lispy-narrow
+	\item[n] special-lispy-new-copy
+	\item[O] special-lispy-oneline
+	\item[o] special-lispy-other-mode
+	\item[P] special-lispy-paste
+	\item[p] special-lispy-eval-other-window
+	\item[R] special-lispy-raise-some
+	\item[r] special-lispy-raise
+	\item[S] special-lispy-stringify
+	\item[s] special-lispy-move-down
+	\item[t] special-lispy-teleport
+	\item[u] special-lispy-undo
+	\item[V] special-lispy-visit
+	\item[v] special-lispy-view
+	\item[W] special-lispy-widen
+	\item[w] special-lispy-move-up
+	\item[X] special-lispy-convolute-left
+	\item[x] special-lispy-x
+	\item[y] special-lispy-occur
+	\item[Z] special-lispy-edebug-stop
+	\item[\textasciitilde] special-lispy-tilde
+\end{keylist}
+
+
+\section{lispy}
+\begin{keylist}[labelwidth=\widthof{\keyify{<C-return>}}]
+	\item[DEL] lispy-delete-backward
+	\item[RET] lispy-newline-and-indent-plain
+	\item[SPC] lispy-space
+	\item["] lispy-quotes
+	\item[\#] lispy-hash
+	\item['] lispy-tick
+	\item[(] lispy-parens
+	\item[)] lispy-right-nostring
+	\item[:] lispy-colon
+	\item[;] lispy-comment
+	\item[{[}] lispy-backward
+	\item[{]}] lispy-forward
+	\item[\textasciicircum] lispy-hat
+	\item[`] lispy-backtick
+	\item[\{] lispy-braces
+	\item[\}] lispy-brackets
+	\item[C-,] lispy-kill-at-point
+	\item[C-1] lispy-describe-inline
+	\item[C-2] lispy-arglist-inline
+	\item[C-3] lispy-right
+	\item[C-4] lispy-x
+	\item[C-7] lispy-cursor-down
+	\item[C-8] lispy-parens-down
+	\item[C-9] lispy-out-forward-newline
+	\item[C-j] lispy-newline-and-indent
+	\item[C-w] lispyville-delete-backward-word
+	\item[C-M-,] lispy-mark
+	\item[M-DEL] lispy-backward-kill-word
+	\item[M-d] lispy-kill-word
+	\item[M-i] lispy-iedit
+	\item[M-J] lispy-join
+	\item[M-j] lispy-split
+	\item[M-k] lispy-kill-sentence
+	\item[M-n] lispy-left
+	\item[M-o] lispy-string-oneline
+	\item[M-q] lispy-fill
+	\item[<backtab>] lispy-shifttab
+	\item[<C-return>] lispy-open-line
+	\item[<escape>] lispyville-normal-state
+	\item[<M-left>] lispy-outline-demote
+	\item[<M-return>] lispy-meta-return
+	\item[<M-right>] lispy-outline-promote
+\end{keylist}
+
+
+
+\newpage
+
+\section{ace}
+\begin{keylist}[labelwidth=\widthof{\keyify{-}}]
+	\item[-] special-lispy-ace-subword
+	\item[a] special-lispy-ace-symbol
+	\item[H] special-lispy-ace-symbol-replace
+	\item[Q] special-lispy-ace-char
+	\item[q] special-lispy-ace-paren
+\end{keylist}
+
+
+\section{locals}
+\begin{keylist}[labelwidth=\widthof{\keyify{<backtab>}}]
+	\item[RET] lispy-newline-and-indent-plain
+	\item[SPC] lispy-space
+	\item["] lispy-quotes
+	\item[\#] lispy-hash
+	\item['] lispy-tick
+	\item[(] lispy-parens
+	\item[)] lispy-right-nostring
+	\item[\texttt{+}] special-lispy-join
+	\item[.] special-lispy-repeat
+	\item[/] special-lispy-splice
+	\item[:] lispy-colon
+	\item[<] special-lispy-barf
+	\item[>] special-lispy-slurp
+	\item[\textasciicircum] lispy-hat
+	\item[\_] special-lispy-underscore
+	\item[`] lispy-backtick
+	\item[A] special-lispy-beginning-of-defun
+	\item[B] special-lispy-ediff-regions
+	\item[b] special-lispy-back
+	\item[C] special-lispy-convolute
+	\item[c] special-lispy-clone
+	\item[d] special-lispy-different
+	\item[E] special-lispy-eval-and-insert
+	\item[e] special-lispy-eval
+	\item[F] special-lispy-follow
+	\item[f] special-lispy-flow
+	\item[G] special-lispy-goto-local
+	\item[g] special-lispy-goto
+	\item[h] special-lispy-left
+	\item[I] special-lispy-shifttab
+	\item[i] special-lispy-tab
+	\item[J] special-lispy-outline-next
+	\item[j] special-lispy-down
+	\item[K] special-lispy-outline-prev
+	\item[k] special-lispy-up
+	\item[L] special-lispy-outline-goto-child
+	\item[l] special-lispy-right
+	\item[M] special-lispy-alt-multiline
+	\item[m] special-lispy-mark-list
+	\item[N] special-lispy-narrow
+	\item[n] special-lispy-new-copy
+	\item[O] special-lispy-oneline
+	\item[o] special-lispy-other-mode
+	\item[P] special-lispy-paste
+	\item[p] special-lispy-eval-other-window
+	\item[R] special-lispy-raise-some
+	\item[r] special-lispy-raise
+	\item[S] special-lispy-stringify
+	\item[s] special-lispy-move-down
+	\item[t] special-lispy-teleport
+	\item[u] special-lispy-undo
+	\item[V] special-lispy-visit
+	\item[v] special-lispy-view
+	\item[W] special-lispy-widen
+	\item[w] special-lispy-move-up
+	\item[X] special-lispy-convolute-left
+	\item[x] special-lispy-x
+	\item[y] special-lispy-occur
+	\item[Z] special-lispy-edebug-stop
+	\item[\textasciitilde] special-lispy-tilde
+	\item[<backtab>] lispy-shifttab
+	\item[<escape>] lispyville-normal-state
+\end{keylist}
+
+
+\section{globals}
+\begin{keylist}[labelwidth=\widthof{\keyify{<C-return>}}]
+	\item[DEL] lispy-delete-backward
+	\item[;] lispy-comment
+	\item[{[}] lispy-backward
+	\item[{]}] lispy-forward
+	\item[\{] lispy-braces
+	\item[\}] lispy-brackets
+	\item[C-,] lispy-kill-at-point
+	\item[C-1] lispy-describe-inline
+	\item[C-2] lispy-arglist-inline
+	\item[C-3] lispy-right
+	\item[C-4] lispy-x
+	\item[C-7] lispy-cursor-down
+	\item[C-8] lispy-parens-down
+	\item[C-9] lispy-out-forward-newline
+	\item[C-j] lispy-newline-and-indent
+	\item[C-w] lispyville-delete-backward-word
+	\item[C-M-,] lispy-mark
+	\item[M-DEL] lispy-backward-kill-word
+	\item[M-d] lispy-kill-word
+	\item[M-i] lispy-iedit
+	\item[M-J] lispy-join
+	\item[M-j] lispy-split
+	\item[M-k] lispy-kill-sentence
+	\item[M-n] lispy-left
+	\item[M-o] lispy-string-oneline
+	\item[M-q] lispy-fill
+	\item[<C-return>] lispy-open-line
+	\item[<M-left>] lispy-outline-demote
+	\item[<M-return>] lispy-meta-return
+	\item[<M-right>] lispy-outline-promote
+\end{keylist}
+
+
+\newpage
+
+\section{locals}
+\begin{keylist}[labelwidth=\widthof{\keyify{RET}}]
+	\item[RET] lispy-newline-and-indent-plain
+	\item[SPC] lispy-space
+	\item["] lispy-quotes
+	\item[\#] lispy-hash
+	\item['] lispy-tick
+	\item[(] lispy-parens
+	\item[)] lispy-right-nostring
+	\item[\texttt{+}] special-lispy-join
+	\item[.] special-lispy-repeat
+	\item[/] special-lispy-splice
+	\item[:] lispy-colon
+	\item[<] special-lispy-barf
+	\item[>] special-lispy-slurp
+	\item[\textasciicircum] lispy-hat
+	\item[\_] special-lispy-underscore
+	\item[`] lispy-backtick
+	\item[A] special-lispy-beginning-of-defun
+	\item[B] special-lispy-ediff-regions
+	\item[b] special-lispy-back
+	\item[C] special-lispy-convolute
+	\item[c] special-lispy-clone
+	\item[d] special-lispy-different
+	\item[E] special-lispy-eval-and-insert
+	\item[e] special-lispy-eval
+	\item[F] special-lispy-follow
+	\item[f] special-lispy-flow
+	\item[G] special-lispy-goto-local
+	\item[g] special-lispy-goto
+	\item[h] special-lispy-left
+	\item[I] special-lispy-shifttab
+	\item[i] special-lispy-tab
+	\item[J] special-lispy-outline-next
+	\item[j] special-lispy-down
+	\item[K] special-lispy-outline-prev
+	\item[k] special-lispy-up
+	\item[L] special-lispy-outline-goto-child
+	\item[l] special-lispy-right
+	\item[M] special-lispy-alt-multiline
+	\item[m] special-lispy-mark-list
+	\item[N] special-lispy-narrow
+	\item[n] special-lispy-new-copy
+	\item[O] special-lispy-oneline
+	\item[o] special-lispy-other-mode
+	\item[P] special-lispy-paste
+	\item[p] special-lispy-eval-other-window
+	\item[R] special-lispy-raise-some
+	\item[r] special-lispy-raise
+	\item[S] special-lispy-stringify
+	\item[s] special-lispy-move-down
+	\item[t] special-lispy-teleport
+	\item[u] special-lispy-undo
+	\item[V] special-lispy-visit
+	\item[v] special-lispy-view
+	\item[W] special-lispy-widen
+	\item[w] special-lispy-move-up
+	\item[X] special-lispy-convolute-left
+	\item[x] special-lispy-x
+	\item[y] special-lispy-occur
+	\item[Z] special-lispy-edebug-stop
+	\item[\textasciitilde] special-lispy-tilde
+\end{keylist}
+
+
+\section{ace}
+\begin{keylist}[labelwidth=\widthof{\keyify{-}}]
+	\item[-] special-lispy-ace-subword
+	\item[a] special-lispy-ace-symbol
+	\item[H] special-lispy-ace-symbol-replace
+	\item[Q] special-lispy-ace-char
+	\item[q] special-lispy-ace-paren
+\end{keylist}
+
+
+
+\vfill\null
+\columnbreak
+
+\section{globals}
+\begin{keylist}[labelwidth=\widthof{\keyify{C-M-,}}]
+	\item[DEL] lispy-delete-backward
+	\item[;] lispy-comment
+	\item[{[}] lispy-backward
+	\item[{]}] lispy-forward
+	\item[\{] lispy-braces
+	\item[\}] lispy-brackets
+	\item[C-,] lispy-kill-at-point
+	\item[C-1] lispy-describe-inline
+	\item[C-2] lispy-arglist-inline
+	\item[C-3] lispy-right
+	\item[C-4] lispy-x
+	\item[C-7] lispy-cursor-down
+	\item[C-8] lispy-parens-down
+	\item[C-9] lispy-out-forward-newline
+	\item[C-j] lispy-newline-and-indent
+	\item[C-w] lispyville-delete-backward-word
+	\item[C-M-,] lispy-mark
+	\item[M-DEL] lispy-backward-kill-word
+	\item[M-d] lispy-kill-word
+	\item[M-i] lispy-iedit
+	\item[M-J] lispy-join
+	\item[M-j] lispy-split
+	\item[M-k] lispy-kill-sentence
+	\item[M-n] lispy-left
+	\item[M-o] lispy-string-oneline
+	\item[M-q] lispy-fill
+\end{keylist}
+
+
+\section{long chars}
+\begin{keylist}[labelwidth=\widthof{\keyify{<C-return>}}]
+	\item[<backtab>] lispy-shifttab
+	\item[<C-return>] lispy-open-line
+	\item[<escape>] lispyville-normal-state
+	\item[<M-left>] lispy-outline-demote
+	\item[<M-return>] lispy-meta-return
+	\item[<M-right>] lispy-outline-promote
+\end{keylist}
+
+
+\end{multicols*}
+
+\newpage
+
+
+
+\begin{center}
+  \Huge
+  Normal mode
+  \par\smallskip
+\end{center}
+
+\begin{multicols*}{3}
+
+\section{ace}
+\begin{keylist}[labelwidth=\widthof{\keyify{Q}}]
+	\item[Q] special-lispy-ace-char
+\end{keylist}
+
+
+\section{locals}
+\begin{keylist}[labelwidth=\widthof{\keyify{(}}]
+	\item[(] lispyville-backward-up-list
+	\item[)] lispyville-up-list
+	\item[<] lispyville-barf
+	\item[>] lispyville-slurp
+	\item[C] lispyville-change-line
+	\item[c] lispyville-change
+	\item[D] lispyville-delete-line
+	\item[d] lispyville-delete
+	\item[H] lispyville-backward-sexp
+	\item[L] lispyville-forward-sexp
+	\item[S] lispyville-change-whole-line
+	\item[s] lispyville-substitute
+	\item[V] lispyville-wrap-lispy-mark-visual
+	\item[v] lispyville-wrap-lispy-mark-symbol-visual
+	\item[X] lispyville-delete-char-or-splice-backwards
+	\item[x] lispyville-delete-char-or-splice
+	\item[Y] lispyville-yank-line
+	\item[y] lispyville-yank
+\end{keylist}
+
+
+\section{globals}
+\begin{keylist}[labelwidth=\widthof{\keyify{C-M-,}}]
+	\item[{[}] lispyville-previous-opening
+	\item[{]}] lispyville-next-closing
+	\item[\{] lispyville-next-opening
+	\item[\}] lispyville-previous-closing
+	\item[C-,] lispy-kill-at-point
+	\item[C-1] lispy-describe-inline
+	\item[C-2] lispy-arglist-inline
+	\item[C-3] lispy-right
+	\item[C-4] lispy-x
+	\item[C-7] lispy-cursor-down
+	\item[C-8] lispy-parens-down
+	\item[C-9] lispy-out-forward-newline
+	\item[C-a] lispy-move-beginning-of-line
+	\item[C-j] lispy-newline-and-indent
+	\item[C-k] lispy-kill
+	\item[C-v] lispyville-wrap-lispy-mark-visual
+	\item[C-M-,] lispy-mark
+	\item[M-DEL] lispy-backward-kill-word
+	\item[M-d] lispy-kill-word
+	\item[M-h] lispyville-beginning-of-defun
+	\item[M-i] lispy-iedit
+	\item[M-J] lispy-join
+	\item[M-j] lispyville-drag-forward
+	\item[M-k] lispyville-drag-backward
+	\item[M-l] lispyville-end-of-defun
+	\item[M-n] lispy-left
+	\item[M-o] lispy-string-oneline
+	\item[M-q] lispy-fill
+\end{keylist}
+
+
+\section{control chars}
+\begin{keylist}[labelwidth=\widthof{\keyify{<C-return>}}]
+	\item[<backtab>] lispy-shifttab
+	\item[<C-return>] lispy-open-line
+	\item[<M-left>] lispy-outline-demote
+	\item[<M-return>] lispy-meta-return
+	\item[<M-right>] lispy-outline-promote
+\end{keylist}
+
+
+
+\newpage
+
+\end{multicols*}
+\end{document}

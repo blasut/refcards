@@ -1,0 +1,71 @@
+#+TITLE: Org-Mode Reference Card
+#+STARTUP: hidestars
+#+OPTIONS: toc:nil author:nil date:nil title:nil num:nil
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4paper,landscape]
+#+LATEX_HEADER: \pagestyle{empty}
+
+#+LATEX_HEADER: \usepackage[margin=0.5cm]{geometry}
+
+
+#+LATEX_HEADER: \usepackage{multicol}
+#+LATEX_HEADER: \setlength\columnseprule{0.5pt}
+
+#+LATEX_HEADER: \usepackage{textcomp}
+#+LATEX_HEADER: \usepackage{menukeys}
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{xpatch}
+#+LATEX_HEADER: \usepackage{xparse}
+#+LATEX_HEADER: \usepackage{calc}
+#+LATEX_HEADER: \usepackage{tcolorbox}
+
+#+LATEX_HEADER: \colorlet{faded}{lightgray}
+#+LATEX_HEADER: \colorlet{namespace}{black}
+#+LATEX_HEADER: \def\alternateitem\item[#1]{\item[#1]\color{faded}}
+#+LATEX_HEADER: \NewDocumentCommand\ns{g}{\IfValueTF{#1}{\gdef\currentnamespace{#1}\currentnamespace}{\textcolor{namespace}{\currentnamespace}}}
+#+LATEX_HEADER: \renewcommand\section[1]{\bigskip\par\textbf{\large#1}\medskip}
+#+LATEX_HEADER: \renewcommand\subsection[1]{\medskip\par\textbf{#1}\medskip}
+#+LATEX_HEADER: \newcommand\meta[1]{\textlangle\textit{#1}\textrangle}
+#+LATEX_HEADER: \newcommand\keyify[1]{\keys{\ttfamily#1}}
+#+LATEX_HEADER: \newlist{keylist}{description}{1}
+#+LATEX_HEADER: \setlist[keylist]{labelindent = 2ex, itemsep     = -1ex, font        = \keyify, before      = \let\&\alternateitem \xpretocmd{\item}{\color{black}}{}{} \ttfamily}
+
+#+LATEX_HEADER: \setlength\parindent{0em}
+#+LATEX_HEADER: \setlength\parsep{0ex}
+#+LATEX_HEADER: \renewcommand\baselinestretch{1.2}
+
+#+ATTR_LaTeX: :center nil
+
+#+LATEX: \setlength{\columnsep}{1cm}
+
+#+LATEX: \begin{multicols}{3}
+
+* Org-Mode Reference Card
+
+** Getting Started
+
+   #+BEGIN_LATEX
+   \begin{keylist}[labelwidth=\widthof{\keyify{C-c M-.}}]
+     \item[M-x] org-info
+     \item[M-.] cider-find-var
+     \item[C-c M-.] cider-find-resource
+     \item[C-c M-s] cider-selector
+   \end{keylist}
+   #+END_LATEX
+   
+
+#+LATEX: \columnbreak
+
+** Something else
+
+   #+BEGIN_LATEX
+   \begin{keylist}[labelwidth=\widthof{\keyify{C-c M-.}}]
+     \item[M-x] org-info
+     \item[M-.] cider-find-var
+     \item[C-c M-.] cider-find-resource
+     \item[C-c M-s] cider-selector
+   \end{keylist}
+   #+END_LATEX
+
+   #+LATEX: \end{multicols}
