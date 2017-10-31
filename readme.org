@@ -1,0 +1,18 @@
+# Refcards
+
+I wanted a half decent reference card with my keybindings from the lispy/lispyville package. 
+
+This thing collects your current key bindings and let's you filter and or group the based on some predicate. 
+
+Any nice looking refcard will have some manual labour involved, but I just wanted a easy way to export my current bindings so I could create some nice refcards
+
+# Usage
+
+- Get the bindings
+- Filter
+- Group them
+- Them them to latex into any fil
+- Open "reference.tex", and edit it to include your own bindings.
+  You should also add newpages and maybe column breaks
+- Render with pdflatex
+- print!
